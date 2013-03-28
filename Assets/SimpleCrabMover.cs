@@ -17,12 +17,23 @@ public class SimpleCrabMover : MonoBehaviour {
 		if(Input.GetMouseButtonUp(0)){
 			MousePos = Input.mousePosition;
 		}
-		targetPosition.x = MousePos.x;
+		
+		targetPosition.z = -1 * MousePos.x;
 		targetPosition.y = MousePos.y;
-		Vector3 heading = (targetPosition - transform.position).normalized;
-		this.rigidbody.AddForce(heading*amtToMove);
-		if(transform.position == targetPosition){
+		
+		
+		float crabX = Camera.mainCamera.WorldToScreenPoint(this.transform.position).x;
+		float crabY = Camera.mainCamera.WorldToScreenPoint(this.transform.position).y;
+		
+		Debug.Log ("x: " + crabX + " y: " + crabY);
+		
+		this.transform.Translate (new Vector3(0, MousePos.y - crabY, -1 * MousePos.x - crabX));
+		
+		//Vector3 heading = (targetPosition - transform.position).normalized;
+		//this.transform.Translate(heading);
+		//this.rigidbody.AddForce(heading*amtToMove);
+		//if(transform.position == targetPosition){
 			//rigidbody.drag = 1000;
-		}
+		//}
 	}
 }
