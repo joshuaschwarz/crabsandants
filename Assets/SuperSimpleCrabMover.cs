@@ -2,8 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class SuperSimpleCrabMover : MonoBehaviour {
-	
+
 	public float crabSpeed = 0;
+	Quaternion rotLock = new Quaternion(0,0,0,0);
+
 	// Use this for initialization
 	void Start () {
 	
@@ -24,7 +26,10 @@ public class SuperSimpleCrabMover : MonoBehaviour {
 			transform.Translate(Vector3.down*Time.deltaTime*crabSpeed);
 		}
 		
+
+		this.transform.rotation = rotLock;
 	}
+	
 	
 	void Scored(){
 		this.gameObject.SetActive(false);

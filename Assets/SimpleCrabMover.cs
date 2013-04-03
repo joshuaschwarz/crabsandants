@@ -6,6 +6,7 @@ public class SimpleCrabMover : MonoBehaviour {
 	public float CrabMoveSpeed;
 	private float crabX = 0;
 	private float crabY = 0;
+	private Quaternion rotLock = new Quaternion(0,0,0,0);
 	// Use this for initialization
 	void Start () {
 		crabX = Camera.mainCamera.WorldToScreenPoint(this.gameObject.transform.position).x;
@@ -35,6 +36,8 @@ public class SimpleCrabMover : MonoBehaviour {
 		{
 			this.transform.Translate (towardsTarget / towardsTarget.magnitude * amtToMove);
 		}
+		
+		this.gameObject.transform.rotation = rotLock;
 	}
 	
 	void Scored(){
