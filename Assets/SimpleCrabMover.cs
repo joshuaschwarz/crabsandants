@@ -41,7 +41,6 @@ public class SimpleCrabMover : MonoBehaviour {
 	}
 	
 	void Scored(){
-		
 		this.gameObject.SetActive(false);
 	}
 	

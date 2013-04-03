@@ -14,7 +14,8 @@ public class FinishLine : MonoBehaviour {
 	}
 	
 	
-	void onTriggerEnter(Collision collision){
+	void OnTriggerEnter(Collider collision){
+		Debug.Log(collision.gameObject.name);
 		if(collision.gameObject.name == "Crab"){ 
 			score++;
 			collision.gameObject.SendMessage("Scored");	
