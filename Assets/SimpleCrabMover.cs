@@ -6,7 +6,6 @@ public class SimpleCrabMover : MonoBehaviour {
 	public float CrabMoveSpeed;
 	private float crabX = 0;
 	private float crabY = 0;
-	private float score = 0;
 	private Quaternion rotLock = new Quaternion(0,0,0,0);
 	// Use this for initialization
 	void Start () {
