@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class FinishLine : MonoBehaviour {
-
+	public float score = 0;
 	// Use this for initialization
 	void Start () {
 		//GameObject gamemaster = GameObject.Find("GameMaster");
@@ -16,8 +16,14 @@ public class FinishLine : MonoBehaviour {
 	
 	void onCollisionEnter(Collision collision){
 		if(collision.gameObject.name == "Crab"){ 
-			collision.gameObject.SendMessage("Scored");
-			//gamemaster.SendMessage("Scored");//delete if we don't end up scoring
+			collision.gameObject.SendMessage("Scored");	
+			score++;
+			//SendMessage("Scored", score);//delete if we don't end up scoring
 		}
+		
+	}
+	void OnGUI () {
+	GUI.Label(new Rect(10, 30, 60, 20), "Score: " + score);
 	}
 }
+
