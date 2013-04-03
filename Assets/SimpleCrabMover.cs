@@ -7,40 +7,38 @@ public class SimpleCrabMover : MonoBehaviour {
 	private float crabX = 0;
 	private float crabY = 0;
 	private float score = 0;
+	private Quaternion rotLock = new Quaternion(0,0,0,0);
 	// Use this for initialization
 	void Start () {
-		crabX = this.transform.position.x;
-		crabY = this.transform.position.y;
+		crabX = Camera.mainCamera.WorldToScreenPoint(this.gameObject.transform.position).x;
+		crabY = Camera.mainCamera.WorldToScreenPoint(this.gameObject.transform.position).y;
+		mouseButtonClickPosition = new Vector3(crabX,crabY,0f);
 	}
+	
+	Vector3 mouseButtonClickPosition = new Vector3();
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float amtToMove = CrabMoveSpeed * Time.deltaTime;
-
-		if(Input.GetMouseButtonUp(0)){
-			//MousePos = Input.mousePosition;
-		
-
-		
-		//targetPosition.z = -1 * MousePos.x;
-		//targetPosition.y = MousePos.y;
-		
-		
-		crabX = Camera.mainCamera.WorldToScreenPoint(this.transform.position).x;
-		crabY = Camera.mainCamera.WorldToScreenPoint(this.transform.position).y;
+		if(Input.GetMouseButtonUp (0))
+		{
+			mouseButtonClickPosition = Input.mousePosition;
 		}
-		Debug.Log ("x: " + crabX + " y: " + crabY);
+		float amtToMove = CrabMoveSpeed * Time.deltaTime;
 		
+		crabX = Camera.mainCamera.WorldToScreenPoint(this.gameObject.transform.position).x;
+		crabY = Camera.mainCamera.WorldToScreenPoint(this.gameObject.transform.position).y;
+		Vector3 CrabPos = new Vector3(crabX,crabY,0);
 		
-		Vector3 MousePos = new Vector3(crabX,crabY,0);
-		Vector3 towardsTarget = MousePos - this.transform.position;
+		Vector3 towardsTarget = mouseButtonClickPosition - CrabPos;
+		Debug.Log (towardsTarget.x + "," + towardsTarget.y);
 		towardsTarget.z = 0;
-    	this.transform.position += towardsTarget.normalized * amtToMove;
+		towardsTarget.x = towardsTarget.x * -1;
+		if(towardsTarget.magnitude != 0)
+		{
+			this.transform.Translate (towardsTarget / towardsTarget.magnitude * amtToMove);
+		}
 		
-		/*if(this.transform.position == MousePos){
-			this.transform.Translate(Vector3.up * amtToMove,Space.World);
-			this.transform.Translate(Vector3.right * amtToMove,Space.World);
-		}*/
+		this.gameObject.transform.rotation = rotLock;
 	}
 	
 	void Scored(){
