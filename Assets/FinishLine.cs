@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class FinishLine : MonoBehaviour {
-	public float score = 0;
+	public static float score = 0;
 	// Use this for initialization
 	void Start () {
 		//GameObject gamemaster = GameObject.Find("GameMaster");

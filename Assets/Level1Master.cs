@@ -19,8 +19,9 @@ public class Level1Master : MonoBehaviour {
 				numberNotActive++;	
 			}
 		}
-		if(numberNotActive == objects.Length)
+		if(numberNotActive == objects.Length && FinishLine.score > 0)
 		{
+			FinishLine.score = 0;
 			Application.LoadLevel("Level 2");
 		}
 	}
