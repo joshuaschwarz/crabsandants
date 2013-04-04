@@ -29,7 +29,7 @@ public class SimpleCrabMover : MonoBehaviour {
 		Vector3 CrabPos = new Vector3(crabX,crabY,0);
 		
 		Vector3 towardsTarget = mouseButtonClickPosition - CrabPos;
-		Debug.Log (towardsTarget.x + "," + towardsTarget.y);
+		
 		towardsTarget.z = 0;
 		towardsTarget.x = towardsTarget.x * -1;
 		if(towardsTarget.magnitude != 0)

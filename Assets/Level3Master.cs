@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Level2Master : MonoBehaviour {
+public class Level3Master : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -18,16 +18,11 @@ public class Level2Master : MonoBehaviour {
 			{
 				numberNotActive++;	
 			}
-		}if(numberNotActive == objects.Length && FinishLine.score == 0)
+		}
+		if(numberNotActive == objects.Length && FinishLine.score == 0)
 		{
 			FinishLine.score = 0;
 			Application.LoadLevel("Game Over");
 		}
-		if(numberNotActive == objects.Length && FinishLine.score > 0)
-		{
-			FinishLine.score = 0;
-			Application.LoadLevel("Level 4");
-		}
-		
 	}
 }

@@ -28,7 +28,7 @@ public class AntAI : MonoBehaviour {
 	public bool doNotGoRight = false;
 	public int doNotGoRightDelay = 0;
 	
-	int provocationDistance = 500; //when a crab is within this many units (distance formula) from an ant, ant chases
+	int provocationDistance = 200; //when a crab is within this many units (distance formula) from an ant, ant chases
 	
 	int baseDelay = 200;
 	int speed = 1;
@@ -48,7 +48,7 @@ public class AntAI : MonoBehaviour {
 				else if(absXDistanceFormula > 5)
 					LeftRight (crab);
 				
-				//Adjust delays
+				//Adjust delays... ants wait a while before trying to go a certain direction again after hitting an obstacle
 				doNotGoUpDelay--;
 				doNotGoDownDelay--;
 				doNotGoLeftDelay--;
@@ -122,7 +122,6 @@ public class AntAI : MonoBehaviour {
 	
 	void GoLeft(int magnitude)
 	{
-		Debug.Log ("Left");
 		if(col)
 		{
 			doNotGoLeft = true;
@@ -138,7 +137,6 @@ public class AntAI : MonoBehaviour {
 	
 	void GoRight(int magnitude)
 	{
-		Debug.Log ("Right");
 		if(col)
 		{
 			doNotGoRight = true;
@@ -154,7 +152,6 @@ public class AntAI : MonoBehaviour {
 	
 	void GoUp(int magnitude)
 	{
-		Debug.Log ("Up");
 		if(col)
 		{
 			doNotGoUp = true;
@@ -170,7 +167,6 @@ public class AntAI : MonoBehaviour {
 	
 	void GoDown(int magnitude)
 	{
-		Debug.Log ("Down");
 		if(col)
 		{
 			doNotGoDown = true;
@@ -185,6 +181,7 @@ public class AntAI : MonoBehaviour {
 		
 	}
 	
+	//handle collisions with obstacles and killing of crabs
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.tag == "Obstacle")
