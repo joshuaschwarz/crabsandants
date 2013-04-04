@@ -28,6 +28,8 @@ public class AntAI : MonoBehaviour {
 	public bool doNotGoRight = false;
 	public int doNotGoRightDelay = 0;
 	
+	int provocationDistance = 500; //when a crab is within this many units (distance formula) from an ant, ant chases
+	
 	int baseDelay = 200;
 	int speed = 1;
 	
@@ -36,12 +38,14 @@ public class AntAI : MonoBehaviour {
 		GameObject[] go = GameObject.FindGameObjectsWithTag("Crab");
 		foreach(GameObject crab in go)
 		{
-			//check if crab is in sight (for now, assuming crab always in sight for testing)
-			if(true)
+			//check if crab is in sight
+			float absYDistanceFormula = Mathf.Abs(crab.transform.position.y - this.transform.position.y);
+			float absXDistanceFormula = Mathf.Abs(crab.transform.position.x - this.transform.position.x);
+			if(Mathf.Sqrt(absXDistanceFormula * absXDistanceFormula + absYDistanceFormula * absYDistanceFormula) <= provocationDistance)
 			{
-				if(Mathf.Abs(crab.transform.position.y - this.transform.position.y) > 5)
+				if(absYDistanceFormula > 5)
 					UpDown (crab);
-				else if(Mathf.Abs(crab.transform.position.x - this.transform.position.x) > 5)
+				else if(absXDistanceFormula > 5)
 					LeftRight (crab);
 				
 				//Adjust delays
@@ -186,6 +190,10 @@ public class AntAI : MonoBehaviour {
 		if(other.tag == "Obstacle")
 		{
 			col = true;
+		}
+		else if(other.tag == "Crab")
+		{
+			other.gameObject.SendMessage("Killed");
 		}
 	}
 	

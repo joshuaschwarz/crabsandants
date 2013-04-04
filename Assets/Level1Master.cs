@@ -10,7 +10,7 @@ public class Level1Master : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Scored(){
-		if(!GameObject.Find("Crab")) {
+		if(GameObject.FindGameObjectsWithTag("Crab").Length == 0) {
 			Application.LoadLevel("Level 2");
 	}
 }
