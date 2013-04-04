@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Level1Master : MonoBehaviour {
+public class Level2Master : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -21,14 +21,7 @@ public class Level1Master : MonoBehaviour {
 		}
 		if(numberNotActive == objects.Length)
 		{
-			Application.LoadLevel("Level 2");
+			Application.LoadLevel("Level 3");
 		}
 	}
 }
-
-
-
-
-
-
-
